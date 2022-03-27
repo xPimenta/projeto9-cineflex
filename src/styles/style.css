@@ -1,0 +1,135 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap'); */
+
+* {
+  box-sizing: border-box;
+  transition: all ease .1s;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+
+.page.image .top-section {
+  display: flex;
+  flex: 0;
+}
+
+.page.image .top-section .image {
+  width: 800px;
+  max-height: 600px;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 2px 2px 5px -1px rgba(0, 0, 0, .2);
+}
+
+.page.image .top-section .info {
+  padding: 0 20px;
+  width: 400px;
+}
+
+.page.image .top-section .info .title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.page.image {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.input-group .title {
+  margin-bottom: 5px;
+  font-size: 22px;
+}
+
+.input-group input {
+  padding: 8px;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+}
+
+
+@media (max-width: 1200px) {
+  .page.explore .images .image {
+    width: calc(50% - 5px);
+    max-width: 100%;
+  }
+
+  .page.explore .images .image:not(:nth-child(3n)) {
+    margin-right: 0px;
+  }
+
+  .page.explore .images .image:not(:nth-child(2n)) {
+    margin-right: 10px;
+  }
+
+  .page.image .top-section {
+    flex-direction: column;
+  }
+
+  .page.image .top-section .image {
+    width: 100%;
+  }
+
+  .page.image .top-section .info {
+    padding: 20px 0;
+    width: 100%;
+  } 
+}
+
+@media (max-width: 790px) {
+  .page.explore .images .image {
+    max-width: 100%;
+  }
+
+  .page.explore .images .image:not(:nth-child(2n)) {
+    margin-right: 0px;
+  }
+
+  .page.explore .images .image:nth-child(odd) {
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .logo {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo img {
+    margin-bottom: 10px;
+    margin-right: 0;
+  }
+
+  .page.explore .images .image {
+    width: 100%;
+  }
+
+  .header {
+    justify-content: center;
+  }
+
+  .add-picture {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 2;
+  }
+
+  .page {
+    margin-bottom: 60px;
+  }
+
+  .page.explore .images .image:nth-child(odd) {
+    margin-right: 0px;
+  }
+}
