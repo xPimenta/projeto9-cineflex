@@ -1,18 +1,20 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Navbar from "./Navbar";
-import ExplorePage from "./ExplorePage";
-import ImagePage from "./ImagePage";
-import AddImagePage from "./AddImagePage";
+import Header from "./Header";
+import MovieList from "./MovieList";
+import Sessions from "./Sessions";
+import Seat from "./Seat";
+import Sucess  from "./Sucess"
 
 export default function App() {
   return (
     <BrowserRouter>
-      <Navbar />
+      <Header />
       <Routes>
-        <Route path="/" element={<ExplorePage />} />
-        <Route path="/sessoes/:movieId" element={<ImagePage />} />
-        <Route path="/add-image" element={<AddImagePage />} />
+        <Route path="/" element={<MovieList />} />
+        <Route path="/sessoes/:movieId" element={<Sessions />} />
+        <Route path="/assentos/:sessionId" element={<Seat />} />
+        <Route path="/sucesso/" element={<Sucess />} />
       </Routes>
     </BrowserRouter>
   );
