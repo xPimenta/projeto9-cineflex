@@ -8,6 +8,7 @@ export default function Seat(){
     const {sessionId} = useParams(); 
     const [seats, setSeats] = useState([""]);
     const [availability, setAvailability] = useState(0);
+    const [movieData, setMovieData] = useState([]); 
 
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [name, setName] = useState("");
@@ -23,15 +24,19 @@ export default function Seat(){
         promise.then(response => {
             const {data} = response;
             console.log("SEATS: terminei a requisição à API", data);
+            setMovieData(data);
             setSeats(data.seats);
         });
     }, []);
 
-    console.log(seats);
+    console.log(movieData);
+
 
     
 
     function reserveSeat(event){
+
+        
         console.log("Reservando assentos...")
         event.preventDefault();
         const promise = axios.post(postURL, {
@@ -41,7 +46,7 @@ export default function Seat(){
         });
         promise.then(response => {
             console.log("Sucesso", response);
-            navigate("/sucesso", {state:{sessionId, selectedSeats, name, cpf}})});
+            navigate("/sucesso", {state:{movieData, selectedSeats, name, cpf}})});
         promise.catch(error => console.log("ERROR!"));
     }
 
