@@ -18,11 +18,14 @@ export default function Success() {
     navigate(path);
   }
 
+  let seatsNumbersList = []
+  movieData2.seats.map(({ id, name }) => selectedSeats.includes(id) ? seatsNumbersList.push(name) : "")
     return (
+        console.log(movieData2),
+   
         <>
             <Title>
                 <Title1> Pedido feito com sucesso! </Title1>
-
 
             <Infos>
                 <Title2 >Filme e sessão</Title2>
@@ -31,7 +34,9 @@ export default function Success() {
 
                 <Title2 >Ingressos </Title2>
 
-                {selectedSeats.map(seat => {
+                {console.log(seatsNumbersList)}
+
+                {seatsNumbersList.map(seat => {
                     return <Info key={seat}> Assento {seat} </Info>
                 })
                 }
@@ -51,6 +56,7 @@ export default function Success() {
 
 const Button = styled.button`
 margin-top:62px;
+margin-bottom:100px;
     background: #E8833A;
     border-radius: 3px;
     font-family: 'Roboto';

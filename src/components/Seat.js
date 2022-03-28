@@ -51,11 +51,16 @@ export default function Seat(){
         });
         promise.then(response => {
             console.log("Sucesso", response);
+           
             navigate("/sucesso", {state:{movieData2, selectedSeats, name, cpf}})});
         promise.catch(error => console.log("ERROR!"));
     }
 
+
+
     return seats.length > 0 ? (
+
+        <>
         <Container>
             <Title2>Selecione o(s) assento(s)</Title2>
             <SeatsMatrix>
@@ -65,16 +70,16 @@ export default function Seat(){
                         return (
                             isAvailable ?
                             
-                            <SeatSpot availability={selectedSeats.includes(name)?2:0} 
+                            <SeatSpot availability={selectedSeats.includes(id)?2:0} 
                                 onClick={() => 
-                                    selectedSeats.includes(name)?
+                                    selectedSeats.includes(id)?
                                     setSelectedSeats(() => {
                                         let seatsAux = selectedSeats;
-                                        seatsAux.splice(selectedSeats.indexOf(name),1);
+                                        seatsAux.splice(selectedSeats.indexOf(id),1);
                                         return [...seatsAux];
                                     })
                                     :
-                                    setSelectedSeats([...selectedSeats, name])
+                                    setSelectedSeats([...selectedSeats, id])
                                 }>    
                                 {name}
                                 {console.log("Os assentos selecionados são: "+selectedSeats)}
@@ -125,8 +130,10 @@ export default function Seat(){
                 <Button type="submit">Reservar assento(s)</Button>
             </form>
 
-            <Footer3 title={movieData.title} posterURL={movieData.posterURL} date={movieData3.date} hour={movieData2.name}></Footer3>
+            
         </Container>
+        <Footer3 title={movieData.title} posterURL={movieData.posterURL} date={movieData3.date} hour={movieData2.name}></Footer3>
+        </>
     ):(
     <Container>
         <Title2>Carregando assentos...</Title2>
@@ -137,6 +144,7 @@ export default function Seat(){
 
 const Container = styled.main`
     width: 100vw;
+    margin-bottom:200px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -146,7 +154,7 @@ const Container = styled.main`
 const Title2 = styled.h2`
     width: 100vw;
     height: 100px;
-    margin-top: 120px;
+    margin-top: 60px;
     margin-bottom: 0px;
     font-family: 'Roboto';
     font-style: normal;
