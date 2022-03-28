@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import {useParams, useNavigate} from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
+import Footer3 from "./Footer3";
 
 export default function Seat(){
 
@@ -9,6 +10,8 @@ export default function Seat(){
     const [seats, setSeats] = useState([""]);
     const [availability, setAvailability] = useState(0);
     const [movieData, setMovieData] = useState([]); 
+    const [movieData2, setMovieData2] = useState([]); 
+    const [movieData3, setMovieData3] = useState([])
 
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [name, setName] = useState("");
@@ -24,12 +27,14 @@ export default function Seat(){
         promise.then(response => {
             const {data} = response;
             console.log("SEATS: terminei a requisição à API", data);
-            setMovieData(data);
+            setMovieData(data.movie);
+            setMovieData2(data);
+            setMovieData3(data.day);
             setSeats(data.seats);
         });
     }, []);
 
-    console.log(movieData);
+    console.log("movieData", movieData3);
 
 
     
@@ -46,7 +51,7 @@ export default function Seat(){
         });
         promise.then(response => {
             console.log("Sucesso", response);
-            navigate("/sucesso", {state:{movieData, selectedSeats, name, cpf}})});
+            navigate("/sucesso", {state:{movieData2, selectedSeats, name, cpf}})});
         promise.catch(error => console.log("ERROR!"));
     }
 
@@ -99,7 +104,7 @@ export default function Seat(){
                 </SubItem>
             </Subtitle>
             <form onSubmit={reserveSeat}>
-                <SubItem>
+                <SubItem2>
                     <p>Nome do comprador:</p>
                     <input type="text" 
                         placeholder="Digite seu nome..." 
@@ -107,8 +112,8 @@ export default function Seat(){
                         value={name}
                         required/>
                     {console.log(name)}
-                </SubItem>
-                <SubItem>
+                </SubItem2>
+                <SubItem2>
                     <p>CPF do comprador:</p>
                     <input type="text" 
                         placeholder="Digite seu CPF..."
@@ -116,9 +121,11 @@ export default function Seat(){
                         value={cpf}
                         required/>
                     {console.log(cpf)}
-                </SubItem>
+                </SubItem2>
                 <Button type="submit">Reservar assento(s)</Button>
             </form>
+
+            <Footer3 title={movieData.title} posterURL={movieData.posterURL} date={movieData3.date} hour={movieData2.name}></Footer3>
         </Container>
     ):(
     <Container>
@@ -126,6 +133,7 @@ export default function Seat(){
     </Container>
     );
 }
+
 
 const Container = styled.main`
     width: 100vw;
@@ -148,6 +156,10 @@ const Title2 = styled.h2`
     text-align: center;
     letter-spacing: 0.04em;
     color: #293845;
+
+    .input{
+    margin-top:10px;
+    }
 `;
 
 const SeatsMatrix = styled.section`
@@ -199,11 +211,22 @@ const Subtitle = styled.div`
     color: #4E5A65;
 `;
 
+
+
 const SubItem = styled.div`
     display: flex;
     flex-direction: column;
     align-items: left;
     margin: 15px;
+`;
+
+const SubItem2 = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin: 15px;
+    width: 327px;
+
 `;
 
 const Button = styled.button`
@@ -215,10 +238,15 @@ const Button = styled.button`
     font-size: 18px;
     line-height: 21px;
     display: flex;
+    margin-top:50px;
     align-items: center;
+    height:42px;
+    width:225px;
     text-align: center;
+    align-items:center;
+    justify-content:center;
     letter-spacing: 0.02em;
-    margin-left: 24px;
+    margin-left: 67px;
     color: #FFFFFF;
 `;
 

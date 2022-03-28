@@ -1,31 +1,38 @@
 import styled from "styled-components";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate} from 'react-router-dom';
+
+
 
 
 
 export default function Success() {
     const location = useLocation();
 
-    const { movieData, selectedSeats, name, cpf } = location.state;
+    const { movieData2, selectedSeats, name, cpf } = location.state;
 
 
 
+    let navigate = useNavigate(); 
+  const routeChange = () =>{ 
+    let path = `/`; 
+    navigate(path);
+  }
 
     return (
         <>
             <Title>
                 <Title1> Pedido feito com sucesso! </Title1>
-            </Title>
+
 
             <Infos>
                 <Title2 >Filme e sessão</Title2>
-                <Info> {movieData.movie.title} </Info>
-                <Info> {movieData.day.date}  {movieData.name} </Info>
+                <Info> {movieData2.movie.title} </Info>
+                <Info> {movieData2.day.date}  {movieData2.name} </Info>
 
                 <Title2 >Ingressos </Title2>
 
                 {selectedSeats.map(seat => {
-                    return <Info> Assento {seat} </Info>
+                    return <Info key={seat}> Assento {seat} </Info>
                 })
                 }
 
@@ -34,9 +41,31 @@ export default function Success() {
                 <Info> CPF: {cpf} </Info>
             </Infos>
 
+            <Button onClick={routeChange} className="submit">Voltar para Home</Button>
+            </Title>
+
         </>
     );
 }
+
+
+const Button = styled.button`
+margin-top:62px;
+    background: #E8833A;
+    border-radius: 3px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    height:42px;
+    width:225px;
+    letter-spacing: 0.02em;
+    color: #FFFFFF;
+`;
 
 const Infos = styled.div`
     display: flex;

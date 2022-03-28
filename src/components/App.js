@@ -5,8 +5,10 @@ import MovieList from "./MovieList";
 import Sessions from "./Sessions";
 import Seat from "./Seat";
 import Sucess  from "./Sucess"
+// import Footer from ".Footer"
 
 export default function App() {
+
   return (
     <BrowserRouter>
       <Header />
